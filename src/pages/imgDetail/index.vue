@@ -167,7 +167,7 @@ mounted(){
     slideImg(a){
       // console.log(a);
 
-      if(a.slide==='左滑'){
+          if(a.slide==='左滑'){
         this.imgIndex++
 
         this.getList()
