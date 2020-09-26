@@ -7,8 +7,7 @@
                 :values="items.map(v=>v.title)" 
                 @clickItem="onClickItem" 
                 style-type="text"
-                active-color="#d4237a"
-                style="font-size:40rpx"></uni-segmented-control>
+                active-color="#d4237a">123</uni-segmented-control>
             </view>
         </view>
         <scroll-view @scrolltolower="handleScrolltolower" enable-flex scroll-y  class="cate_content">
@@ -94,9 +93,11 @@ export default {
     width: 100%;
     .cate_content{
         height: calc(100vh - 36px);
+		width: 100%;
         display: flex;
         flex-wrap: wrap;
         .cate_content_item{
+			float: left;
             width: 33.33%;
             border-right: 5px solid #fff;
             box-sizing: border-box;

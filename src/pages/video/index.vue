@@ -1,6 +1,7 @@
 <template>
   <view class="video">
     <view class="video_section">
+		
         <uni-segmented-control 
         :current="current" 
         :values="items.map(v=>v.title)" 

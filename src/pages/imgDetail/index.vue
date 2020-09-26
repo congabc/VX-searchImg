@@ -2,10 +2,11 @@
   <view class="author">
     <view class="author_mess">
       <view class="author_avatar">
-        <image mode="widthFix" :src="imgItem.user.avatar"></image>
+        <!-- <image mode="widthFix"  src="http://img0.adesk.com/download/5dee04f804220801b33bebf7"></image> -->
+        <image mode="widthFix" :src="imgItem.user.avatar?imgItem.user.avatar:`http://img0.adesk.com/download/5dee04f804220801b33bebf7`"></image>
       </view>
       <view class="author_info">
-        <view class="author_name">{{imgItem.user.name}}</view>
+        <view class="author_name">{{imgItem.user.name?imgItem.user.name:"Kiko"}}</view>
         <view class="author_time">{{imgItem.longTime}}</view>
       </view>
 
@@ -13,7 +14,7 @@
     <!-- 大图 -->
     <swiper-action @swiperAction="slideImg">
     <view class="author_img" >
-        <image mode="widthFix" :src="imgItem.thumb"></image>
+        <image mode="aspectFill" :src="imgItem.thumb"></image>
     </view>
     </swiper-action>
     <!-- 点赞模块 -->
@@ -124,30 +125,32 @@ export default {
     return {
       imgList:[],
       imgIndex:0,
-      imgItem:{},
+      imgItem:null,
       comment:[]
+	  
     }
   },
 
   components: {swiperAction},
 onLoad(){
-    console.log(getApp().globalData)
+    
     this.imgIndex= getApp().globalData.imgIndex
     this.imgList= getApp().globalData.imgList
     this.getList()
 },
-mounted(){
 
-},
   methods: {
     getList(){
     this.imgItem= this.imgList[this.imgIndex]
+    console.log(this.imgItem);	
+	// this.imgItem.user.avatar=this.imgItem.user.avatar?this.imgItem.user.avatar:"http://img0.adesk.com/download/5dee04f804220801b33bebf7";
     // console.log(moment().utc().format())
-    // console.log(moment(this.imgList.atime*1000).fromNow())
+    // console.log(moment(this.imgItem.atime*1000).fromNow())
     // console.log(this.imgList.atime)
     // console.log(moment().utc())
-    this.imgItem.longTime=moment(this.imgList.atime*1000).fromNow()
+    this.imgItem.longTime=moment(this.imgItem.atime*1000).fromNow()
     this.getComments(this.imgItem.id)
+    console.log(this.imgItem.longTime);
     },
     getComments(id){
       this.request({
@@ -160,7 +163,6 @@ mounted(){
           
         );
         this.comment=res.data.res.comment
-        console.log(res.data.res)
       })
       // console.log(this.comment)
     },
@@ -236,8 +238,11 @@ mounted(){
   }
   .author_img {
     width: 750rpx;
+    height: 350px;
+    
     image{
       width: 100%;
+      height: 350px;
     }
   }
   // 点赞

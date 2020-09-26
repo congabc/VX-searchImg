@@ -20,7 +20,7 @@ export default {
         videoWp:[],
         params:[],
         url:"",
-        isData:true
+        isData:true,
     }
   },
 
@@ -43,12 +43,12 @@ export default {
                   })
                   return
               }
-              this.videoWp=[...this.videoWp,...res.data.res.videowp]
+              this.videoWp=[...this.videoWp,...res.data.res.videowp]|| []
           })
       },
       scrollDownToLower(){
           if(this.isData){
-            this.params.skip+=this.params.limit
+            this.params.skip+=this.params.limit||[]
             this.getList()
           }else{
               uni.showToast({

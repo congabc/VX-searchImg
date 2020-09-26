@@ -34,7 +34,7 @@ export default {
           })
           .then(res=>{
               console.log(res);
-              this.videoWp=res.data.res.videowp
+              this.videoWp=res.data.res.videowp 
                 // console.log(this.videoWp);
           })
       }

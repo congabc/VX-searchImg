@@ -22,6 +22,7 @@ export default {
   methods: {
     // 图片跳转
     handleClick(){
+		console.log(this.list,this.index)
       getApp().globalData.imgList=this.list;
       getApp().globalData.imgIndex=this.index;
       uni.navigateTo({
